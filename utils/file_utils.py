@@ -45,4 +45,4 @@ def yaml_dump(data_yaml, yaml_save_path):
 
 
 def get_config():
-    return yaml_load('augment_config.yaml')
+    return yaml_load('./cocochorales/augment_config.yaml')
