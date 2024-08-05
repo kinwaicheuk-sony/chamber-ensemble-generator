@@ -23,4 +23,4 @@ if __name__ == '__main__':
                                key=lambda x: int(os.path.basename(x).split('.')[0]))
             for tar_file in tqdm(tar_files):
                 os.system(
-                    f'tar -xf {tar_file} --use-compress-prog=pbzip2 -C {os.path.join(output_dir, data_type, split)}')
+                    f'tar -xf {tar_file} --use-compress-prog=bzip2 -C {os.path.join(output_dir, data_type, split)}')
