@@ -33,6 +33,6 @@ check_and_download() {
 export -f check_and_download
 
 # download main dataset in parallel
-seq 1 96 | xargs -P 8 -I {} bash -c 'check_and_download "train" "$@"' _ {}
+seq 1 96 | xargs -P 32 -I {} bash -c 'check_and_download "train" "$@"' _ {}
 seq 1 12 | xargs -P 8 -I {} bash -c 'check_and_download "valid" "$@"' _ {}
 seq 1 12 | xargs -P 8 -I {} bash -c 'check_and_download "test" "$@"' _ {}
