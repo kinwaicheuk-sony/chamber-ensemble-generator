@@ -32,10 +32,11 @@ if __name__ == '__main__':
             all_tar_files = glob.glob(os.path.join(data_dir, data_type, split, '*.tar.bz2'))
             # Filter tar files to start from the specified start_file number
             filtered_tar_files = [f for f in all_tar_files if int(os.path.basename(f).split('.')[0]) >= start_file]
-            tar_files.extend(filtered_tar_files)
-            # print(filtered_tar_files)
+            # Append tuple (tar_file, split) to tar_files
+            tar_files.extend((f, split) for f in filtered_tar_files)
+
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(extract_tar_file, tar_file, os.path.join(output_dir, 'main_dataset', split))
-                   for tar_file in tar_files]
+                   for tar_file, split in tar_files]
         for future in tqdm(as_completed(futures), total=len(futures)):
             future.result()
